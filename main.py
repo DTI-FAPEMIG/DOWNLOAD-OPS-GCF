@@ -80,7 +80,7 @@ if interface.user is not None:  # Opção Download dos arquivos
 
         driver.find_element(By.XPATH, "//*[@value='Prosseguir']").click()
         ##################################
-
+        
         wait.until(EC.presence_of_element_located(
             (By.XPATH, "//*[contains(text(), 'Menu de opções')]")
         ))  # Aguardar o texto 'Menu de opções' na pag. HTML
@@ -98,17 +98,20 @@ if interface.user is not None:  # Opção Download dos arquivos
             numOrdemPagamento = excel.get_cell_value("A", i)
 
             wait.until(EC.presence_of_element_located(
-                (By.XPATH, "//*[contains(text(), 'INFORME OS PARAMETROS')]")
+                (By.XPATH, "//*[contains(text(), 'INFORME OS PARÂMETROS')]")
             ))  # Aguardar o texto INFORME OS PARAMETROS na pag. HTML
 
+            print(6)
             driver.find_element(
                 By.XPATH, "//td[contains(text(), 'Ordem de Pagamento Bancária')]/input"
             ).click() # Clicar na opção 'Ordem de Pagamento Bancária' no Input Radio
 
+            print(7)
             wait.until(EC.visibility_of_element_located(
                 (By.ID, "numOrdemPagamento")
             )).send_keys(numOrdemPagamento)  # Preenche Nº Ordem Pagamento
 
+            print(8)
             driver.find_element(By.ID, "confirmar").click() # Clicar em 'confirmar'
 
             time.sleep(1.5)
